@@ -11,6 +11,14 @@ sr.addDocument("Visiting Seattle", "http://www.cityofseattle.net/html/visitor", 
 sr.addDocument("Metroblogging Seattle", "http://seattle.metblogs.com/", "Hyper-local look at what's going on in the city. Regional bloggers give a perspective on daily life.");
 sr.addDocument("Seattle SuperSonics", "http://www.nba.com/sonics", "Official site of the Sonics, featuring news, schedule and scores, players, stats, ticket information, and more.");
 
-dcs.cluster(sr, 'lingo', function(sr) {
-	console.log(sr.clusters);
+dcs.cluster(sr, 'lingo', function(err, sr) {
+	if(err) console.error(err);
+
+	//console.log(sr.clusters);
 });
+
+dcs.externalCall("baseball", 100, "lingo", function(err, sr) {
+	if(err) console.error(err);
+
+	//console.log(sr.clusters);
+})
