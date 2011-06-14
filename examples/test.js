@@ -13,12 +13,15 @@ sr.addDocument("Seattle SuperSonics", "http://www.nba.com/sonics", "Official sit
 
 dcs.cluster(sr, 'lingo', function(err, sr) {
 	if(err) console.error(err);
-
 	//console.log(sr.clusters);
 });
 
-dcs.externalCall("baseball", 100, "lingo", function(err, sr) {
-	if(err) console.error(err);
-
-	//console.log(sr.clusters);
-})
+dcs.externalCall(
+	"seattle", 
+	null, 
+	[ {key:"LingoClusteringAlgorithm.desiredClusterCountBase", value:20} ], 
+	function(err, sr) {
+		if(err) console.error(err);
+		//console.log(sr.clusters);
+	}
+);
