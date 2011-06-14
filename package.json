@@ -1,6 +1,6 @@
 {
     "version": "0.1.1",
-    "description": "Carrot2 Document Clustering Server implementation for node.js.",
+    "description": "Carrot2 Document Clustering Server implementation for Node.js",
     "repository": {
         "type": "git",
         "url": "http://github.com/miksago/node-websocket-server.git"
