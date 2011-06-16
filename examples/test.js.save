@@ -13,9 +13,7 @@ sr.addDocument("Seattle SuperSonics", "http://www.nba.com/sonics", "Official sit
 
 dcs.cluster(sr, 'lingo', function(err, sr) {
 	if(err) console.error(err);
-	//console.log(sr.clusters);
-
-	console.log( sr.getDocumentByID(sr.clusters[0].documents[0]) );
+	console.log(sr.clusters);
 });
 
 dcs.externalCall(
