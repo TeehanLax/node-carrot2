@@ -18,7 +18,7 @@ Create an instance of the DCS interface:
 
 	var dcs = new carrot2.DocumentClusteringServer();
 
-The server handles search result object's:
+Create a search result object and populate it with documents (containing a title, url, and snippet):
 
 	var sr = new carrot2.SearchResult();
 	sr.addDocument("Title", "http://www.site.com/", "This is a snippet.");
