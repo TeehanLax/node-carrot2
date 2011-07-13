@@ -8,13 +8,13 @@ Install the package:
 
 ## General Use
 
-This example is based on [examples/test.js](https://github.com/TeehanLax/node-carrot2/blob/master/examples/test.js). 
+For a more comprehensive example, refer to [examples/test.js](https://github.com/TeehanLax/node-carrot2/blob/master/examples/test.js). 
 
 Include the package:
 
-	var carrot2 = require('../lib/carrot2');
+	var carrot2 = require('carrot2');
 
-Create an instance of the server interface:
+Create an instance of the DCS interface:
 
 	var dcs = new carrot2.DocumentClusteringServer();
 
