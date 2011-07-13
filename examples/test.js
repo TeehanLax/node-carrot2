@@ -11,19 +11,18 @@ sr.addDocument("Visiting Seattle", "http://www.cityofseattle.net/html/visitor", 
 sr.addDocument("Metroblogging Seattle", "http://seattle.metblogs.com/", "Hyper-local look at what's going on in the city. Regional bloggers give a perspective on daily life.");
 sr.addDocument("Seattle SuperSonics", "http://www.nba.com/sonics", "Official site of the Sonics, featuring news, schedule and scores, players, stats, ticket information, and more.");
 
-dcs.cluster(sr, 'lingo', function(err, sr) {
-	if(err) console.error(err);
-	//console.log(sr.clusters);
-
-	console.log( sr.getDocumentByID(sr.clusters[0].documents[0]) );
+dcs.cluster(sr, {algorithm:'lingo'}, [ 
+        {key:"LingoClusteringAlgorithm.desiredClusterCountBase", value:10},
+        {key:"LingoClusteringAlgorithm.phraseLabelBoost", value:1.0}
+], function(err, sr) {
+    if (err) console.log(err);
+    var cluster = sr.clusters;
 });
 
-dcs.externalCall(
-	"seattle", 
-	null, 
-	[ {key:"LingoClusteringAlgorithm.desiredClusterCountBase", value:20} ], 
-	function(err, sr) {
-		if(err) console.error(err);
-		//console.log(sr.clusters);
-	}
-);
+dcs.externalCall('seattle', {algorithm:'stc'}, [ 
+        {key:"LingoClusteringAlgorithm.desiredClusterCountBase", value:10},
+        {key:"LingoClusteringAlgorithm.phraseLabelBoost", value:1.0}
+], function(err, sr) {
+    if (err) console.log(err);
+	var cluster = sr.clusters;
+});
