@@ -8,7 +8,7 @@ Install the package:
 
 ## Basic Use
 
-For a working example, refer to [examples/basic.js](https://github.com/TeehanLax/node-carrot2/blob/master/examples/basic.js). 
+The basic use of node-carrot2 involves providing a set of documents to the cluster server and receiving a results object through a callback. For a complete example, refer to [examples/basic.js](https://github.com/TeehanLax/node-carrot2/blob/master/examples/basic.js). 
 
 Include the package:
 
@@ -37,17 +37,17 @@ For a complete list of customizable Carrot2 attributes, refer to the Component d
 
 **NOTE:** Currently the DCS parameters object only supports `algorithm`. Possible algorithm's are:
 
-* lingo — Lingo Clustering(default)
-* stc — Suffix Tree Clustering
-* kmeans — Bisecting k-means
-* url — By URL Clustering
-* source — By Source Clustering
+* `lingo` — Lingo Clustering (default)
+* `stc` — Suffix Tree Clustering
+* `kmeans` — Bisecting k-means
+* `url` — By URL Clustering
+* `source` — By Source Clustering
 
 ## External Use
 
-Alternatively, you can call roll:
+Alternatively, you can cluster an external search engine results with the `externalCall` method:
 
-	dcs.externalCall('my query', {algorithm:'stc'}, [ 
+	dcs.externalCall('my query', {algorithm:'stc', source:"bing-web"}, [ 
             {key:"LingoClusteringAlgorithm.desiredClusterCountBase", value:10},
             {key:"LingoClusteringAlgorithm.phraseLabelBoost", value:1.0}
 	], function(err, sr) {
@@ -55,7 +55,21 @@ Alternatively, you can call roll:
 		var cluster = sr.clusters;
 	});
 
-## Configuration
+The method structure is similar to `cluster`, however instead of a search result object you provide a string query. Also, the DCS parameters object supports a `source` key. Possible external sources include: 
+
+* `etools` — eTools Metasearch Engine
+* `bing-web` — Bing Search
+* `boss-web` — Yahoo Web Search
+* `wiki` — Wikipedia Search (with Yahoo Boss)
+* `boss-images` — Yahoo Image Search
+* `boss-news` — Yahoo Boss News Search
+* `pubmed` — PubMed medical database
+* `indeed` — Jobs from indeed.com
+* `xml` — XML
+* `google-desktop` — Google Desktop search
+* `solr` — Solr Search Engine
+
+## Results
 
 Talk about the configuration with
 
