@@ -10,9 +10,6 @@
     },
     "engine": [ "node >=0.2.0" ],
     "main": "./lib/carrot2",
-    "bugs": {
-        "web": "https://github.com/TeehanLax/node-carrot2/issues"
-    },
     "author": "TeehanLax",
     "licenses": [{
         "type": "MIT",
