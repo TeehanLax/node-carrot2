@@ -1,6 +1,6 @@
 # node-carrot2 - Carrot2 DCS implementation for Node.js
 
-This library requires the Carrot2 Document Clustering Server. Carrot2 is an open source clustering engine available at http://project.carrot2.org/index.html. Installation instructions and configuration can be found at http://project.carrot2.org/documentation.html.
+This library requires the Carrot2 Document Clustering Server. Carrot2 is an open source clustering engine available at http://project.carrot2.org/index.html. Installation instructions and configuration can be found at http://project.carrot2.org/documentation.html. Carrot2 was originally designed for clustering search results from web queries, and thus uses a "search result" metaphor (which we've upheld), but it can be used for any small (a few thousand) collection of documents.
 
 Install the package:
 
@@ -8,7 +8,7 @@ Install the package:
 
 ## General Use
 
-For a more comprehensive example, refer to [examples/test.js](https://github.com/TeehanLax/node-carrot2/blob/master/examples/test.js). 
+For a more comprehensive example, refer to [examples/basic.js](https://github.com/TeehanLax/node-carrot2/blob/master/examples/basic.js). 
 
 Include the package:
 
@@ -18,12 +18,12 @@ Create an instance of the DCS interface:
 
 	var dcs = new carrot2.DocumentClusteringServer();
 
-Create a search result object and populate it with documents (containing a title, url, and snippet):
+Create a search result object and populate it with documents (containing an ID, title, url, snippet, and optional custom parameters):
 
 	var sr = new carrot2.SearchResult();
-	sr.addDocument("Title", "http://www.site.com/", "This is a snippet.");
+	sr.addDocument("ID", "Title", "http://www.site.com/", "This is a snippet.", {my_key1:my_value1, my_key2:my_value2});
 
-To cluster a search result, pass that object:
+To cluster a search result, call that:
 
 	dcs.cluster(sr, {algorithm:'lingo'}, [ 
             {key:"LingoClusteringAlgorithm.desiredClusterCountBase", value:10},
