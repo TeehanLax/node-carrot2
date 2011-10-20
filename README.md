@@ -35,7 +35,7 @@ To cluster a `SearchResult`, call the `cluster` method:
 
 For a complete list of customizable Carrot2 attributes, refer to the Component documentation: http://download.carrot2.org/head/manual/index.html#chapter.components. 
 
-**NOTE:** Currently the DCS parameters object only supports `algorithm`. Possible algorithm's are:
+**NOTE:** Currently the DCS parameters object supports `algorithm`, `ids` (set of document id's to use - defaults to all), and `max` (maximum number of documents to supply). Possible algorithm's are:
 
 * `lingo` — Lingo Clustering (default)
 * `stc` — Suffix Tree Clustering
@@ -55,7 +55,7 @@ Alternatively, you can cluster an external search engine results by suppling a q
 		var cluster = sr.clusters;
 	});
 
-**NOTE:** The DCS parameters object supports a `source` key. Possible external sources include: 
+**NOTE:** The DCS parameters object supports `source` (search engine to use), and `results` (number of search results to grab from source). Possible external sources include: 
 
 * `etools` — eTools Metasearch Engine
 * `bing-web` — Bing Search
