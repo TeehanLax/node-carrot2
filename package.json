@@ -1,24 +1,22 @@
 {
-    "version": "0.1.1",
+    "version": "0.0.1",
     "description": "Carrot2 Document Clustering Server implementation for Node.js",
     "repository": {
         "type": "git",
-        "url": "http://github.com/miksago/node-websocket-server.git"
+        "url": "https://github.com/TeehanLax/node-carrot2"
     },
     "directories": {
         "lib": "./lib"
     },
+    "engine": [ "node >=0.2.0" ],
     "main": "./lib/carrot2",
     "bugs": {
-        "web": "http://github.com/miksago/node-websocket-server/issues"
+        "web": "https://github.com/TeehanLax/node-carrot2/issues"
     },
-    "author": "Peter Nitsch <peter@teehanlax.com>",
+    "author": "TeehanLax",
     "licenses": [{
         "type": "MIT",
         "url": "./LICENSE.md"
     }],
-    "name": "carrot2",
-    "engines": {
-        "node": ">=0.2.0-0"
-    }
+    "name": "carrot2"
 }
