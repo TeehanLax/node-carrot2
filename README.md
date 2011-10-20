@@ -8,22 +8,26 @@ Install the package:
 
 ## Basic Use
 
-The basic use of node-carrot2 involves providing a set of documents to the cluster server and receiving a results object through a callback. For a complete example, refer to [examples/basic.js](https://github.com/TeehanLax/node-carrot2/blob/master/examples/basic.js). 
+The basic use of node-carrot2 involves providing a set of documents to the cluster server and receiving a `SearchResult` object through a callback. For a complete example, refer to [examples/basic.js](https://github.com/TeehanLax/node-carrot2/blob/master/examples/basic.js). 
 
-Include the package:
+### Step 1: Include the package
 
 	var carrot2 = require('carrot2');
 
-Create an instance of the DCS interface:
+### Step 2: Create an instance of the DCS interface
 
-	var dcs = new carrot2.DocumentClusteringServer();
+`DocumentClusteringServer` can accept a parameter object with `host` and `port` properties.
 
-Create a `SearchResult` object and populate it with documents (containing an ID, title, url, snippet, and optional custom parameters):
+	var dcs = new carrot2.DocumentClusteringServer(params);
+
+### Step 3: Create a `SearchResult` object and populate it with documents 
+
+Each document contains an id, title, url, snippet, and optional custom parameters:
 
 	var sr = new carrot2.SearchResult();
 	sr.addDocument("ID", "Title", "http://www.site.com/", "This is a snippet.", {my_key1:my_value1, my_key2:my_value2});
 
-To cluster a `SearchResult`, call the `cluster` method:
+### Step 4: Call the `cluster` method
 
 	dcs.cluster(sr, {algorithm:'lingo'}, [ 
             {key:"LingoClusteringAlgorithm.desiredClusterCountBase", value:10},
