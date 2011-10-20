@@ -4,12 +4,12 @@ var carrot2 = require('../lib/carrot2');
 var dcs = new carrot2.DocumentClusteringServer( {debug:true} );
 
 //
-dcs.externalCall(
+dcs.cluster(
 	"seattle", 
 	{source:"bing-web"}, 
 	[ {key:"LingoClusteringAlgorithm.desiredClusterCountBase", value:20} ], 
 	function(err, sr) {
 		if(err) console.error(err);
-		console.log(sr);
+		console.log(sr.clusters[0]);
 	}
 );

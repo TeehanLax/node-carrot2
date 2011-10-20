@@ -18,12 +18,12 @@ Create an instance of the DCS interface:
 
 	var dcs = new carrot2.DocumentClusteringServer();
 
-Create a search result object and populate it with documents (containing an ID, title, url, snippet, and optional custom parameters):
+Create a `SearchResult` object and populate it with documents (containing an ID, title, url, snippet, and optional custom parameters):
 
 	var sr = new carrot2.SearchResult();
 	sr.addDocument("ID", "Title", "http://www.site.com/", "This is a snippet.", {my_key1:my_value1, my_key2:my_value2});
 
-To cluster a search result, call the `cluster` method:
+To cluster a `SearchResult`, call the `cluster` method:
 
 	dcs.cluster(sr, {algorithm:'lingo'}, [ 
             {key:"LingoClusteringAlgorithm.desiredClusterCountBase", value:10},
@@ -45,9 +45,9 @@ For a complete list of customizable Carrot2 attributes, refer to the Component d
 
 ## External Use
 
-Alternatively, you can cluster an external search engine results with the `externalCall` method:
+Alternatively, you can cluster an external search engine results by suppling a query `string` instead of a `SearchResult` to the `cluster` method. For a complete example, refer to [examples/external.js](https://github.com/TeehanLax/node-carrot2/blob/master/examples/external.js).
 
-	dcs.externalCall('my query', {algorithm:'stc', source:"bing-web"}, [ 
+	dcs.cluster('my query', {algorithm:'stc', source:"bing-web"}, [ 
             {key:"LingoClusteringAlgorithm.desiredClusterCountBase", value:10},
             {key:"LingoClusteringAlgorithm.phraseLabelBoost", value:1.0}
 	], function(err, sr) {
@@ -55,7 +55,7 @@ Alternatively, you can cluster an external search engine results with the `exter
 		var cluster = sr.clusters;
 	});
 
-The method structure is similar to `cluster`, however instead of a search result object you provide a string query. Also, the DCS parameters object supports a `source` key. Possible external sources include: 
+**NOTE:** The DCS parameters object supports a `source` key. Possible external sources include: 
 
 * `etools` — eTools Metasearch Engine
 * `bing-web` — Bing Search
@@ -71,9 +71,66 @@ The method structure is similar to `cluster`, however instead of a search result
 
 ## Results
 
-Talk about the configuration with
+A `SearchResult` object returned in a cluster callback looks like:
 
-	code examples
+	{ query: 'seattle',
+	  cap: 100,
+	  id_increment: 0,
+	  documents: [ ... ],
+	  documentHash: { ... },
+	  idHash: {},
+	  clusters: 
+	   [ { id: '[\'Washington\']',
+		  size: 13,
+		  score: 39.551955526331575,
+		  phrases: [ 'Washington' ],
+		  documents: 
+		   [ { id: 1 },
+		     { id: 4 },
+		     { id: 25 },
+		     { id: 26 },
+		     { id: 36 },
+		     { id: 39 },
+		     { id: 45 },
+		     { id: 47 },
+		     { id: 64 },
+		     { id: 71 },
+		     { id: 73 },
+		     { id: 75 },
+		     { id: 95 } ],
+		  attributes: { score: 39.551955526331575 } }
+		,
+
+	...
+		     
+	  clusterHash: 
+	   { '[\'Washington\']': 
+	      { id: '[\'Washington\']',
+		  size: 13,
+		  score: 39.551955526331575,
+		  phrases: [ 'Washington' ],
+		  documents: 
+		   [ { id: 1 },
+		     { id: 4 },
+		     { id: 25 },
+		     { id: 26 },
+		     { id: 36 },
+		     { id: 39 },
+		     { id: 45 },
+		     { id: 47 },
+		     { id: 64 },
+		     { id: 71 },
+		     { id: 73 },
+		     { id: 75 },
+		     { id: 95 } ],
+		  attributes: { score: 39.551955526331575 } },
+	     
+	...
+	     
+	    } 
+	}
+
+For detailed documentation on Carrot2 JSON output reference http://download.carrot2.org/head/manual/index.html#section.architecture.output-json.
 
 ## License
 
