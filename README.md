@@ -16,7 +16,7 @@ The basic use of node-carrot2 involves providing a set of documents to the clust
 
 ### Step 2: Create an instance of the DCS interface
 
-`DocumentClusteringServer` can accept a parameter object with `host` and `port` properties.
+`DocumentClusteringServer` can accept an optional parameter object with `host` and `port` properties.
 
 	var dcs = new carrot2.DocumentClusteringServer(params);
 

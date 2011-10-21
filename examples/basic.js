@@ -1,23 +1,18 @@
 var fs = require('fs'),
 	carrot2 = require('../lib/carrot2');
 
-// Load JSON file with 200 entries related to Seattle
 var fileContents = fs.readFileSync('./seattle.json','utf8'); 
 var schema = JSON.parse(fileContents); 
 
-// Create DCS server in debug mode
 var dcs = new carrot2.DocumentClusteringServer( {debug:true} );
 
-//
-var sr = new carrot2.SearchResult( {query:schema.searchresult.query, cap:1000} );
+var sr = new carrot2.SearchResult( {query:schema.searchresult.query, cap:200} );
 
-//
 for(var i=0; i<schema.searchresult.documents.length; i++) {
 	var doc = schema.searchresult.documents[i];
 	sr.addDocument(doc.title, doc.title, doc.url, doc.snippet, null);
 }
 
-//
 dcs.cluster(sr, {algorithm:'lingo', max:200}, [ 
             {key:"LingoClusteringAlgorithm.desiredClusterCountBase", value:20},
             {key:"LingoClusteringAlgorithm.phraseLabelBoost", value:1.0},
