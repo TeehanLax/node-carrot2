@@ -1,3 +1,4 @@
+[![build status](https://secure.travis-ci.org/TeehanLax/node-carrot2.png)](http://travis-ci.org/TeehanLax/node-carrot2)
 # node-carrot2 - Carrot2 DCS implementation for Node.js
 
 This library requires the Carrot2 Document Clustering Server - an open source clustering engine available at http://project.carrot2.org/index.html. Installation instructions and configuration can be found at http://project.carrot2.org/documentation.html. Carrot2 was originally designed for clustering search results from web queries, and thus uses a "search result" metaphor (which we've upheld), but it can also be used for any small (a few thousand) collection of documents.
